@@ -4,9 +4,11 @@
 (enable-console-print!)
 
 ;; define your app data so that it doesn't get over-written on reload
-(defonce app-state (atom {:text "Hello world!" :likes 0 }))
+(def blank-board ["." "." "."
+                  "." "." "."
+                  "." "." "."])
 
-;; (.dir js/console (.getElementById js/document "app"))
+(def app-state (atom {:game-board blank-board :blank-board blank-board}))
 
 (defn render! []
   (.render js/ReactDOM
@@ -17,7 +19,7 @@
 
 (render!)
 
-(reset! app-state {:likes 100})
+;(reset! app-state {:likes 100})
 
 (defn on-js-reload []
   ;; optionally touch your app-state to force rerendering depending on
